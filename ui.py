@@ -1,5 +1,6 @@
+from color import colo
 def menu():
-	print("\n--- TODO APP ---")
+	print(color(("\n--- TODO APP ---"))
 	print("1. Show tasks")
 	print("2. Add task")
 	print("3. Complete task(toggle)")
