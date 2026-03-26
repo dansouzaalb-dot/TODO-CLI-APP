@@ -6,6 +6,6 @@ def red(text):
 def green(text):
 	return f"\033[32m{text}\033[0m"
 
-def color(text):
+def light_blue(text):
 	return f"\033[36m{text}\033[0m"
 

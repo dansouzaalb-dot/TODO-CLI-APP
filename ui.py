@@ -1,7 +1,7 @@
-from color import color
+from color import light_blue
 
 def menu():
-	print(color("\n--- TODO APP ---"))
+	print(light_blue("\n--- TODO APP ---"))
 	print("1. Show tasks")
 	print("2. Add task")
 	print("3. Complete task(toggle)")
