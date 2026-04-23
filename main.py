@@ -1,5 +1,5 @@
 from task import Task
-from storage import load_tasks, save_tasks, show_tasks, sort_tasks, add_tasks, complete_tasks, delete_tasks, edit_tasks, show_stats, search_tasks
+from storage import load_tasks, save_tasks, show_tasks, sort_tasks, add_task, complete_task, delete_task, edit_task, show_stats, search_task
 from color import red
 from ui import menu, clear
 
@@ -15,18 +15,20 @@ def main():
 
 		if choice == "1":
 			show_tasks(tasks)
+			input("\nPress Enter to continue...")
 		elif choice == "2":
-			add_tasks(tasks)
+			add_task(tasks)
 		elif choice == "3":
-			complete_tasks(tasks)
+			complete_task(tasks)
 		elif choice == "4":
-			delete_tasks(tasks)
+			delete_task(tasks)
 		elif choice == "5":
-			edit_tasks(tasks)
+			edit_task(tasks)
 		elif choice == "6":
 			show_stats(tasks)
+			input("\nPress Enter to continue...")
 		elif choice == "7":
-			search_tasks(tasks)
+			search_task(tasks)
 		elif choice == "8":
 			break
 		else:

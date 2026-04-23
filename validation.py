@@ -1,23 +1,13 @@
+from datetime import datetime
+
 #--- Validates Date ---
 
 def valid_date(date):
-	parts = date.split("/")
-
-	if len(parts) != 3:
+	try:
+		datetime.strptime(date, "%m/%d/%Y")
+		return True
+	except ValueError:
 		return False
-
-	month, day, year = parts
-
-	if not (month.isdigit() and day.isdigit() and year.isdigit()):
-		return False
-
-	if not (1 <= int(month) <=12):
-		return False
-
-	if not(1 <= int(day) <= 31):
-		return False
-
-	return True
 	
 #--- Validates Priority ---
 

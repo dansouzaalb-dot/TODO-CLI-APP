@@ -3,6 +3,7 @@ import json
 from validation import valid_date, valid_priority, valid_index
 from color import red, green
 from task import Task
+from datetime import datetime
 
 FILE = "tasks.json"
 
@@ -47,43 +48,43 @@ def show_tasks(tasks):
 	print("\nPending tasks:")
 	for i, task in enumerate(tasks, 1):
 		if not task.done:
-			task.display(i)
+			task.display(index)
 
 	print("\nCompleted tasks:")
 	for i, task in enumerate(tasks, 1):
 		if task.done:
-			task.display(i)
+			task.display(index)
 
 #--- Filter: Date tasks ---
 
 def sort_tasks(tasks):
-	tasks.sort(key = lambda task: task.date)
+	tasks.sort(key = lambda task: datetime.strptime(task.date, "%m/%d/%Y"))
 
-#--- Add tasks ---
+#--- Add task ---
 
-def add_tasks(tasks):
+def add_task(tasks):
 	title = input("New task: ")
-	
-	date = input("Date(mm/dd/yyyy): ")
-	if valid_date(date):
-		pass
-	else:
+	while True:
+		date = input("Date(mm/dd/yyyy): ")
+		if valid_date(date):
+			break
 		print(red("ERROR! mm/dd/yyyy"))
-		return
-	priority = input("Urgency(HIGH, MEDIUM or LOW): ")
-	if valid_priority(priority):
-		pass
-	else:
+	
+	while True:
+		priority = input("Urgency(HIGH, MEDIUM or LOW): ")
+		if valid_priority(priority):
+			break
 		print(red("ERROR! Either: High, Medium or Low"))
-		return
+
 	tasks.append(Task(date, title, priority))
 	sort_tasks(tasks)
 	save_tasks(tasks)
 	print(green("Task added."))
+	input("\nPress Enter to continue...")
 
-#--- Completes and ✔️ tasks ---
+#--- Completes and ✔️ task ---
 
-def complete_tasks(tasks):
+def complete_task(tasks):
 	show_tasks(tasks)
 	
 	if not tasks:
@@ -103,9 +104,9 @@ def complete_tasks(tasks):
 	else:
 		print("Invalid number.")
 
-#--- Delete tasks ---
+#--- Delete task ---
 
-def delete_tasks(tasks):
+def delete_task(tasks):
 	show_tasks(tasks)
 
 	if not tasks:
@@ -117,16 +118,16 @@ def delete_tasks(tasks):
 		print(red("ERROR! Please enter a number."))
 		return
 
-	if valid_index(num, tasks):
+	if 	valid_index(num, tasks):
 		removed = tasks.pop(num - 1)
 		save_tasks(tasks)
 		print(green("Removed:"), removed.title)
 	else:
-		print(red("ERRO! Invalid number."))
+		print(red("ERROR! Invalid number."))
 
 #--- Edit tasks ---
 
-def edit_tasks(tasks):
+def edit_task(tasks):
 	show_tasks(tasks)
 
 	if not tasks:
@@ -139,19 +140,18 @@ def edit_tasks(tasks):
 
 	if valid_index(num, tasks):
 		title = input("New title: ")
-		date = input("New date(mm/dd/yyyy): ")
-		if valid_date(date):
-			pass
-		else:
+		while True:
+			date = input("New date(mm/dd/yyyy): ")
+			if valid_date(date):
+				break
 			print(red("ERROR! mm/dd/yyyy"))
-			return
 
-		priority = input("New urgency(HIGH, MEDIUM or LOW): ")
-		if valid_priority(priority):
-			pass
-		else:
+		while True:
+			priority = input("New urgency(HIGH, MEDIUM or LOW): ")
+			if not valid_priority(priority):
+				break
 			print(red("ERROR! High, Medium or Low"))
-			return
+
 		tasks [num - 1].title = title
 		tasks [num - 1].date = date
 		tasks [num - 1].priority = priority
@@ -178,7 +178,7 @@ def show_stats(tasks):
 
 #--- Search tasks ---
 
-def search_tasks(tasks):
+def search_task(tasks):
 	
 	if not tasks:
 		print(red("\nNo tasks."))
