@@ -1,7 +1,7 @@
 from task import Task
 from storage import load_tasks, save_tasks, show_tasks, sort_tasks, add_tasks, complete_tasks, delete_tasks, edit_tasks, show_stats, search_tasks
 from color import red
-from ui import menu
+from ui import menu, clear
 
 #--- Main Menu ---
 
@@ -9,6 +9,7 @@ def main():
 	tasks = load_tasks()
 
 	while True:
+		clear()
 		menu()
 		choice = input("Choose: ")
 
@@ -29,7 +30,7 @@ def main():
 		elif choice == "8":
 			break
 		else:
-			print(red("Invalid"))
+			print(red("Invalid choice!"))
 
 if __name__ == "__main__":
 	main()

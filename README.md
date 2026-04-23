@@ -21,3 +21,20 @@
 
 ````bash
 python3 main.py
+
+## 📂 Project Structure
+
+- ui.py -> user interface
+- main.py -> app controller
+- storage.py -> logic & persistente
+- task.py -> Task class
+- validation.py -> input validation
+- color.py -> CLI colors
+
+## ⌨️  Example
+
+1. [✔️ ] (03/20/2026) Study Python | Urgency: High
+
+## ✍ Author
+
+Daniel Albuquerque
