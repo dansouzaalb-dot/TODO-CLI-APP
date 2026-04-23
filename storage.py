@@ -46,12 +46,12 @@ def show_tasks(tasks):
 	sort_tasks(tasks)
 
 	print("\nPending tasks:")
-	for i, task in enumerate(tasks, 1):
+	for index, task in enumerate(tasks, 1):
 		if not task.done:
 			task.display(index)
 
 	print("\nCompleted tasks:")
-	for i, task in enumerate(tasks, 1):
+	for index, task in enumerate(tasks, 1):
 		if task.done:
 			task.display(index)
 
@@ -118,7 +118,7 @@ def delete_task(tasks):
 		print(red("ERROR! Please enter a number."))
 		return
 
-	if 	valid_index(num, tasks):
+	if valid_index(num, tasks):
 		removed = tasks.pop(num - 1)
 		save_tasks(tasks)
 		print(green("Removed:"), removed.title)
@@ -191,6 +191,7 @@ def search_task(tasks):
 		if keyword in task.title.lower():
 			print(green(task))
 			found = True
+			input("\nPress Enter to continue...")
 	
 	if not found:
 		print(red("Task not found!"))
