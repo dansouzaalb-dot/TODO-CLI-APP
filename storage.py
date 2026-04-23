@@ -4,7 +4,7 @@ from validation import valid_date, valid_priority, valid_index
 from color import red, green
 from task import Task
 
-FILE = "tasks.json"
+FILE = "data/tasks.json"
 
 
 #--- Load Tasks ---
